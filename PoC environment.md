@@ -1,6 +1,6 @@
 # **PoC管理ルール（Claude.ai中心版）**
 
-この文書は、Claude.ai が PoC の実装仕様（makespec）および EA コード生成（generate）を行う際に従うべき **運用ルール** を定義する。
+この文書は、Claude.ai が PoC の実装仕様（仕様レビュー）および コード生成を行う際に従うべき **運用ルール** を定義する。
 
 > **環境前提**
 > 
@@ -24,18 +24,18 @@ Claude.ai は以下の順序を厳守する：
 
 ### **1.2 各フェーズのファイルと担当**
 
-|フェーズ|入力ファイル|出力ファイル|担当|
-|---|---|---|---|
-|要求整理|（議論）|PoC-XXXX_Request.md|人間＋Claude.ai|
-|PoC仕様|PoC-XXXX_Request.md|PoC-XXXX_Spec.md|Claude.ai|
-|仕様レビュー|PoC-XXXX_Spec.md|（修正版Spec.md）|人間＋Claude.ai|
-|分析スキーム|（完成版Spec.md）|csvschema.json<br>preprocess_rule.json|Claude.ai|
-|コード生成|PoC-XXXX_Spec.md<br>csvschema.json<br>ベースEA|PoC-XXXX.mq5|Claude.ai|
-|コンパイル|PoC-XXXX.mq5|PoC-XXXX.ex5|人間（MT5 CLI）|
-|テスター実行|PoC-XXXX.ex5|CSVログ|人間（MT5）|
-|前処理・サマリ|CSVログ<br>preprocess_rule.json|summary.json|人間（Python）|
-|分析|summary.json＋Spec.md|PoC-XXXX_Report.md|Claude.ai|
-|次のPoC議論|PoC-XXXX_Report.md|PoC-XXXX+1_Request.md|人間＋Claude.ai|
+| フェーズ    | 入力ファイル                                      | 出力ファイル                                 | 担当           |
+| ------- | ------------------------------------------- | -------------------------------------- | ------------ |
+| 要求整理    | （PoC-XXXX-1_Report.md）<br>（議論）              | PoC-XXXX_Request.md                    | 人間＋Claude.ai |
+| PoC仕様   | PoC-XXXX_Request.md                         | PoC-XXXX_Spec.md                       | Claude.ai    |
+| 仕様レビュー  | PoC-XXXX_Spec.md                            | （修正版Spec.md）                           | 人間＋Claude.ai |
+| 分析スキーム  | （完成版Spec.md）                                | csvschema.json<br>preprocess_rule.json | Claude.ai    |
+| コード生成   | PoC-XXXX_Spec.md<br>csvschema.json<br>ベースEA | PoC-XXXX.mq5                           | Claude.ai    |
+| コンパイル   | PoC-XXXX.mq5                                | PoC-XXXX.ex5                           | 人間（MT5 CLI）  |
+| テスター実行  | PoC-XXXX.ex5                                | CSVログ                                  | 人間（MT5）      |
+| 前処理・サマリ | CSVログ<br>preprocess_rule.json               | summary.json                           | 人間（Python）   |
+| 分析      | summary.json＋Spec.md                        | PoC-XXXX_Report.md                     | Claude.ai    |
+| 次のPoC議論 | PoC-XXXX_Report.md                          | PoC-XXXX+1_Request.md                  | 人間＋Claude.ai |
 
 ---
 
@@ -174,7 +174,7 @@ PoC-XXXX/
 ## 🟦 **このルールが満たすもの**
 
 - Claude.ai が理解すべき "PoC改善ループのルール" を定義
-- makespec / generate / analyze の動作に必要な参照ファイルを明確化
+- 仕様レビュー / コード生成 / 分析 の対応に必要な参照ファイルを明確化
 - Claude.ai が仕様を逸脱しないためのガードレールを維持
 - Request.md → Spec.md → generate の流れを強制
 - ベースコード尊重・差分修正の原則を明確化
