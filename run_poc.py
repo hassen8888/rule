@@ -8,7 +8,7 @@ from modules.preprocess import run_preprocess
 from modules.analyze import run_analyze
 
 # ★ PoC ルートを一元管理（サブフォルダ対応）
-POC_ROOT = Path(r"C:\Users\hasej\PoC_Runtime\PoCs")
+POC_ROOT = Path(r"C:\Users\hasej\Claude\PoCs")
 
 def main():
     parser = argparse.ArgumentParser()
